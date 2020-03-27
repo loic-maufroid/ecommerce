@@ -17,14 +17,31 @@ class AppFixtures extends Fixture
         $this->slugger = $slugger;
     }
 
+    public static function couleurs(){
+        $r = random_int(1,7);
+        switch ($r) {
+            case 1:
+                return ['bleu'];
+            case 2:
+                return ['rouge'];
+            case 3:
+                return ['vert'];
+            case 4:
+                return ['bleu','rouge'];
+            case 5:
+                return ['bleu','vert'];
+            case 6:
+                return ['rouge','vert'];
+            default:
+                return ['bleu','rouge','vert'];
+        }
+    }
+
+
     public function load(ObjectManager $manager)
     {
         $faker = \Faker\Factory::create('fr_FR');
         $tastes = ['citron','orange','coca','fraise','framboise','crabe','mayo','mystére','caramel','choco','raisin','acid','synthétique','choco-moelleux'];
-        $colors = [];
-        for ($i=0; $i < 24 ; $i++) { 
-            $colors[] = $faker->safeColorName;
-        }        
 
         for ($i=1; $i <= 100; $i++) { 
             $product = new Product();
@@ -34,7 +51,7 @@ class AppFixtures extends Fixture
             $product->setPrice(random_int(99,4999));
             $product->setCreationDate(new DateTime());
             $product->setHeart(random_int(0,1) == 0 ? true : false);
-            $product->setColors(random_int(0,1) == 0 ? [$colors[random_int(0,count($colors)-1)]] : [$colors[random_int(0,count($colors)-1)],$colors[random_int(0,count($colors)-1)]]);
+            $product->setColors(self::couleurs());
             $product->setImage(null);
             $product->setDiscount(random_int(1,5) > 1 ? random_int(5,75) : null);
             $manager->persist($product);

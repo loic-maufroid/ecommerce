@@ -112,4 +112,16 @@ class ProductRepository extends ServiceEntityRepository
 
         return $query->getResult();
     }
+
+    /**
+     * @return: Product[]
+     */
+    public function findByColors(array $colors){
+        
+        $query = $this->getEntityManager()->createQuery(
+            'SELECT p FROM App\Entity\Product p WHERE p.colors=:colors'
+        )->setParameter('colors',serialize($colors));
+
+        return $query->getResult();
+    }
 }
