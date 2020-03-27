@@ -33,11 +33,26 @@ class ProductController extends AbstractController
         else
         $products = $productRepository->findByColors($colors);
 
+        $productLatest = $productRepository->findOneLatest();
+
         return $this->render('product/index.html.twig', [
             "products" => $products,
             "checkBleu" => $checkBleu,
             "checkRouge" => $checkRouge,
-            "checkVert" => $checkVert
+            "checkVert" => $checkVert,
+            "productLatest" => $productLatest[0]
+        ]);
+    }
+
+    /**
+     * @Route("/product/{slug}",name="see_product")
+     */
+    public function show($slug,ProductRepository $productRepository){
+
+        $product = $productRepository->findOneBy(["slug" => $slug]);
+
+        return $this->render('product/see.html.twig',[
+            "product" => $product
         ]);
     }
 }

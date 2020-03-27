@@ -45,7 +45,7 @@ class AppFixtures extends Fixture
 
         for ($i=1; $i <= 100; $i++) { 
             $product = new Product();
-            $product->setName('Pâte de fruits goût '.$tastes[random_int(0,count($tastes)-1)]);
+            $product->setName('Pâte de fruits goût '.$tastes[random_int(0,count($tastes)-1)]." ".$i);
             $product->setSlug($this->slugger->slug($product->getName())->lower());
             $product->setDescription($faker->sentence(6,true));
             $product->setPrice(random_int(99,4999));

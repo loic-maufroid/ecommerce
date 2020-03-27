@@ -73,10 +73,10 @@
             <div class="card bg-light mb-3">
                 <div class="card-header bg-success text-white text-uppercase">Dernier produit</div>
                 <div class="card-body">
-                    <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff" />
-                    <h5 class="card-title mt-3">Produit</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <p class="bloc_left_price">99.00 &euro;</p>
+                    <img class="img-fluid" src="{% if productLatest.image %}img/{{ productLatest.image }}{% else %}https://dummyimage.com/600x400/55595c/fff{% endif %}" />
+                    <h5 class="card-title mt-3">{{ productLatest.name }}</h5>
+                    <p class="card-text">{{ productLatest.description }}</p>
+                    <p class="bloc_left_price">{% if productLatest.discount %}{{ productLatest.price * (100 - productLatest.discount) // 100 }} &euro;{% else %}{{ productLatest.price }} &euro;{% endif %}</p>
                 </div>
             </div>
         </div>
@@ -88,11 +88,11 @@
                     <div class="card">
                         <img class="card-img-top" src="{% if product.image %}img/{{ product.image }}{% else %}https://dummyimage.com/600x400/55595c/fff{% endif %}" alt="Card image cap">
                         <div class="card-body">
-                            <h4 class="card-title"><a href="product.html" title="View Product">{{ product.name }}</a></h4>
+                            <h4 class="card-title"><a href="{{ path('see_product',{slug: product.slug}) }}" title="View Product">{{ product.name }}</a></h4>
                             <p class="card-text">{{ product.description }}</p>
                             <div class="row">
                                 <div class="col">
-                                    <p class="btn btn-danger btn-block">{{ product.price }} &euro;</p>
+                                    <p class="btn btn-danger btn-block">{% if product.discount %}{{ product.price * (100 - product.discount) // 100 }} &euro;{% else %}{{ product.price }} &euro;{% endif %}</p>
                                 </div>
                                 <div class="col">
                                     <a href="#" class="btn btn-success btn-block">Ajouter au panier</a>

@@ -48,13 +48,13 @@
                 </div>
                 <img class="img-fluid border-0" src="{% if productRandHeart.image %}img/{{ productRandHeart.image }}{% else %}https://dummyimage.com/600x400/55595c/fff{% endif %}" alt="Card image cap">
                 <div class="card-body">
-                    <h4 class="card-title text-center"><a href="product.html" title="View Product">{{ productRandHeart.name }}</a></h4>
+                    <h4 class="card-title text-center"><a href="{{ path('see_product',{slug: productRandHeart.slug}) }}" title="View Product">{{ productRandHeart.name }}</a></h4>
                     <div class="row">
                         <div class="col">
-                            <p class="btn btn-danger btn-block">{{ productRandHeart.price }} &euro;</p>
+                            <p class="btn btn-danger btn-block">{% if productRandHeart.discount %}{{ productRandHeart.price * (100 - productRandHeart.discount) // 100 }} &euro;{% else %}{{ productRandHeart.price }} &euro;{% endif %}</p>
                         </div>
                         <div class="col">
-                            <a href="product.html" class="btn btn-success btn-block">Voir</a>
+                            <a href="{{ path('see_product',{slug: productRandHeart.slug}) }}" class="btn btn-success btn-block">Voir</a>
                         </div>
                     </div>
                 </div>
@@ -77,11 +77,11 @@
                             <div class="card">
                                 <img class="card-img-top" src="{% if productLatest.image %}img/{{ productLatest.image }}{% else %}https://dummyimage.com/600x400/55595c/fff{% endif %}" alt="Card image cap">
                                 <div class="card-body">
-                                    <h4 class="card-title"><a href="product.html" title="View Product">{{ productLatest.name }}</a></h4>
+                                    <h4 class="card-title"><a href="{{ path('see_product',{slug: productLatest.slug}) }}" title="View Product">{{ productLatest.name }}</a></h4>
                                     <p class="card-text">{{ productLatest.description }}</p>
                                     <div class="row">
                                         <div class="col">
-                                            <p class="btn btn-danger btn-block">{{ productLatest.price }} &euro;</p>
+                                            <p class="btn btn-danger btn-block">{% if productLatest.discount %}{{ productLatest.price * (100 - productLatest.discount) // 100 }} &euro;{% else %}{{ productLatest.price }} &euro;{% endif %}</p>
                                         </div>
                                         <div class="col">
                                             <a href="cart.html" class="btn btn-success btn-block">Ajouter au panier</a>

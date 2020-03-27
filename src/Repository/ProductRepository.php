@@ -124,4 +124,15 @@ class ProductRepository extends ServiceEntityRepository
 
         return $query->getResult();
     }
+
+    /**
+     * @return: Product
+     */
+    public function findOneLatest(){
+        $query = $this->getEntityManager()->createQuery(
+            'SELECT p FROM App\Entity\Product p ORDER BY p.creation_date DESC'
+        )->setMaxResults(1);
+
+        return $query->getResult();
+    }
 }
