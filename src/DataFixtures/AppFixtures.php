@@ -3,18 +3,22 @@
 namespace App\DataFixtures;
 
 use App\Entity\Product;
+use App\Entity\User;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AppFixtures extends Fixture
 {
     private $slugger;
+    private $passwordEncoder;
 
-    public function __construct(SluggerInterface $slugger)
+    public function __construct(SluggerInterface $slugger,UserPasswordEncoderInterface $userPasswordEncoder)
     {
         $this->slugger = $slugger;
+        $this->passwordEncoder = $userPasswordEncoder;
     }
 
     public static function couleurs(){
@@ -56,6 +60,18 @@ class AppFixtures extends Fixture
             $product->setDiscount(random_int(1,5) > 1 ? random_int(5,75) : null);
             $manager->persist($product);
         }
+
+        $admin = new User();
+        $admin->setEmail("loic.maufroid@admin.com");
+        $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setPassword($this->passwordEncoder->encodePassword($admin,'admin'));
+        $manager->persist($admin);
+
+        $user = new User();
+        $user->setEmail("fear.hate@user.fr");
+        $user->setRoles(['ROLE_USER']);
+        $user->setPassword($this->passwordEncoder->encodePassword($user,'user'));
+        $manager->persist($user);
 
         $manager->flush();
     }
