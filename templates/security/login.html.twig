@@ -13,6 +13,12 @@
         <div class="mb-3">
             You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
+        {% else %}
+        <div class="bg-success">
+            {% for message in app.flashes('success') %}
+                {{ message }}
+            {% endfor %}
+        </div>
     {% endif %}
 
     <h1 class="h3 mb-3 font-weight-normal">Entrez vos identifiant et mot de passe pour vous connecter</h1>

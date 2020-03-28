@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() }} - S'inscrire{% endblock %}
+
+{% block content %}
+<div class="container mb-4 mt-4">
+
+    <h2>S'inscrire</h2>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    <button class="btn btn-primary" formnovalidate>S'inscrire</button>
+    {{ form_end(form) }}
+
+</div>
+{% endblock %}
