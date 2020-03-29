@@ -22,13 +22,13 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="{% if productRand1.image %}img/{{ productRand1.image }}{% else %}https://dummyimage.com/855x365/55595c/fff{% endif %}" alt="First Slide">
+                        <img class="d-block w-100" src="{% if productRand1.image %}{{ asset('img/'~productRand1.image) }}{% else %}https://dummyimage.com/855x365/55595c/fff{% endif %}" alt="First Slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="{% if productRand2.image %}img/{{ productRand2.image }}{% else %}https://dummyimage.com/855x365/55595c/fff{% endif %}" alt="Second Slide">
+                        <img class="d-block w-100" src="{% if productRand2.image %}{{ asset('img/'~productRand2.image) }}{% else %}https://dummyimage.com/855x365/55595c/fff{% endif %}" alt="Second Slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="{% if productRand3.image %}img/{{ productRand3.image }}{% else %}https://dummyimage.com/855x365/55595c/fff{% endif %}" alt="Third Slide">
+                        <img class="d-block w-100" src="{% if productRand3.image %}{{ asset('img/'~productRand3.image) }}{% else %}https://dummyimage.com/855x365/55595c/fff{% endif %}" alt="Third Slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -46,7 +46,7 @@
                 <div class="card-header bg-success text-white text-uppercase">
                     <i class="fa fa-heart"></i> Coup de coeur
                 </div>
-                <img class="img-fluid border-0" src="{% if productRandHeart.image %}img/{{ productRandHeart.image }}{% else %}https://dummyimage.com/600x400/55595c/fff{% endif %}" alt="Card image cap">
+                <img class="img-fluid border-0" src="{% if productRandHeart.image %}{{ asset('img/'~productRandHeart.image) }}{% else %}https://dummyimage.com/600x400/55595c/fff{% endif %}" alt="Card image cap">
                 <div class="card-body">
                     <h4 class="card-title text-center"><a href="{{ path('see_product',{slug: productRandHeart.slug}) }}" title="View Product">{{ productRandHeart.name }}</a></h4>
                     <div class="row">
@@ -75,7 +75,7 @@
                             
                         <div class="col-sm">
                             <div class="card">
-                                <img class="card-img-top" src="{% if productLatest.image %}img/{{ productLatest.image }}{% else %}https://dummyimage.com/600x400/55595c/fff{% endif %}" alt="Card image cap">
+                                <img class="card-img-top" src="{% if productLatest.image %}{{ asset('img/'~productLatest.image) }}{% else %}https://dummyimage.com/600x400/55595c/fff{% endif %}" alt="Card image cap">
                                 <div class="card-body">
                                     <h4 class="card-title"><a href="{{ path('see_product',{slug: productLatest.slug}) }}" title="View Product">{{ productLatest.name }}</a></h4>
                                     <p class="card-text">{{ productLatest.description }}</p>

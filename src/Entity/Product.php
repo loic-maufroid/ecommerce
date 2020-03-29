@@ -26,7 +26,6 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
      */
     private $slug;
 
@@ -52,7 +51,6 @@ class Product
 
     /**
      * @ORM\Column(type="boolean")
-     * @Assert\NotBlank
      */
     private $heart;
 
@@ -60,7 +58,7 @@ class Product
      * @ORM\Column(type="array")
      * @Assert\NotBlank
      */
-    private $colors = [];
+    private $colors;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -69,6 +67,7 @@ class Product
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Range(min=10,max=75)
      */
     private $discount;
 

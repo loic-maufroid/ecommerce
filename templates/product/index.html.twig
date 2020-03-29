@@ -73,7 +73,7 @@
             <div class="card bg-light mb-3">
                 <div class="card-header bg-success text-white text-uppercase">Dernier produit</div>
                 <div class="card-body">
-                    <img class="img-fluid" src="{% if productLatest.image %}img/{{ productLatest.image }}{% else %}https://dummyimage.com/600x400/55595c/fff{% endif %}" />
+                    <img class="img-fluid" src="{% if productLatest.image %}{{ asset('img/'~productLatest.image) }}{% else %}https://dummyimage.com/600x400/55595c/fff{% endif %}" />
                     <h5 class="card-title mt-3">{{ productLatest.name }}</h5>
                     <p class="card-text">{{ productLatest.description }}</p>
                     <p class="bloc_left_price">{% if productLatest.discount %}{{ productLatest.price * (100 - productLatest.discount) // 100 }} &euro;{% else %}{{ productLatest.price }} &euro;{% endif %}</p>
@@ -85,8 +85,8 @@
                 {% for product in products %}
 
                 <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img class="card-img-top" src="{% if product.image %}img/{{ product.image }}{% else %}https://dummyimage.com/600x400/55595c/fff{% endif %}" alt="Card image cap">
+                    <div class="card mt-3">
+                        <img class="card-img-top" src="{% if product.image %}{{ asset('img/'~product.image) }}{% else %}https://dummyimage.com/600x400/55595c/fff{% endif %}" alt="Card image cap">
                         <div class="card-body">
                             <h4 class="card-title"><a href="{{ path('see_product',{slug: product.slug}) }}" title="View Product">{{ product.name }}</a></h4>
                             <p class="card-text">{{ product.description }}</p>
